@@ -1,0 +1,748 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto-Regular.ttf");
+}
+@font-face {
+    font-family: "Indie Flower";
+    src: url("../fonts/IndieFlower.ttf");
+}
+
+body {
+    min-width: 1700px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Roboto;
+}
+
+/* Nav menu 
+========================================= */
+.logo {
+    float: left;
+    font-family: "Indie Flower";
+    font-weight: bold;
+    padding: 0px 15px;
+    margin: 0px 0px;  
+    font-size: 2.2em;
+    color: rgb(0, 255, 42);
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+.logo a {
+    color: rgb(0, 255, 42);
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+.logo a:hover {
+    color: rgb(255, 166, 0);
+}
+nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-width: 1700px;
+    width: 100%;
+    height: 70px;
+    background-color: rgba(35, 78, 223, 0.9);
+    margin: 0px 0px;  
+    padding: 0px 0px;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    position: fixed;
+    box-shadow: 3px 3px 10px rgb(216, 147, 147);
+    z-index: 999;
+}
+nav li > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 70px;
+    text-align: center;
+    vertical-align: center;
+    margin: 0px 0px;
+    text-decoration: none;
+    color: white;
+}
+nav > ul {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style-type: none;
+    margin: 0px 0px;  
+    padding: 0px 0px;  
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+}
+nav li {
+    display: inline-flex;
+    margin: 0px 0px;  
+    justify-content: center;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 1.2em;
+    transition: all 0.6s ease;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.6s ease;
+    -ms-transition: all 0.6s ease;
+    -o-transition: all 0.6s ease;
+}
+nav li:hover {
+    background-color: rgba(0, 60, 255, 0.9);
+    cursor: pointer;
+    color: whitesmoke;
+}
+nav ul li ul {
+    text-align: center;
+    position: absolute;
+    margin-top: 71px;
+    display: none;
+    color: whitesmoke;    
+}
+.subMenu {
+    margin-left: 324px;
+    margin-top: -71px;
+}
+nav ul li ul li {
+    text-align: center;
+    border-bottom: 1px solid whitesmoke;
+    font-size: 1em;
+}
+ul li:hover > ul,
+ul li ul:hover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+ul li a:hover {
+    color: black;
+    border: 1px solid whitesmoke;
+}
+ul li ul a:hover {
+    color: black;
+}
+.dropDownMenu a {
+    background-color: rgba(35, 78, 223, 0.9);
+    width: 170px;
+    height: 70px;
+    text-align: center;
+    margin: 0px 0px;
+    text-decoration: none; 
+}
+.menuActive {
+    background-color: rgb(114, 134, 250);
+    border: 1px solid grey;
+}
+
+/* Banner */
+.banner {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 650px;
+    background-image: url("../pictures/brand-business-cellphone-204611.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: 1;
+}
+.banner h2 {
+    color: white;
+    font-size: 3.3em;
+    font-weight: bold;
+    letter-spacing: 9px;
+    text-align: center;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+
+/*        Main page
+============================*/
+/*Description*/
+.description {  
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 500px;
+    background-color: rgb(234, 240, 238);
+}
+.description p {
+    margin: 0 50px;
+    font-size: 2.7em;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 9px;
+    text-align: center;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(253, 253, 253);
+}
+/*Content*/
+.content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 650px;
+    background-image: url("../pictures/computer-cpu-electronics-159235.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+} 
+.content h2, .quizMain h2 {
+    margin: 0 50px;
+    letter-spacing: 2px;
+    font-size: 2.7em;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(245, 245, 245);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    letter-spacing: 9px;
+} 
+.mainPageButton {
+    display: flex;
+   border: none;
+   background-color: rgba(24, 211, 30, 0.8);
+   border-radius:3px;
+   height: 54px;
+   width: 220px;
+   margin: 20px 0px;
+   -webkit-border-radius:3px;
+   -moz-border-radius:3px;
+   -ms-border-radius:3px;
+   -o-border-radius:3px;
+   text-decoration: none;
+   color: black;
+   font-weight: bold;
+   font-size: 1.2em;
+   justify-content: center;
+   align-items: center;
+}
+.mainPageButton:hover {
+    background-color: rgba(0, 211, 7, 0.9);
+    box-shadow: -6px 6px 18px rgb(158, 158, 158);
+}
+.mainPageButton:disabled {
+   background-color: grey;
+   box-shadow: none;
+   color: black;
+}
+*:disabled {
+   color: black;
+}
+
+/*Main content
+==================================*/
+main {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px;
+    padding: 0px 0px;
+    width: 100%;
+    min-height: 1200px;
+    justify-content: center;
+    align-items: center;
+}
+main h1 {
+    margin: 0px 0px;
+    padding: 40px 100px;
+    font-size: 3em;
+    color: whitesmoke;
+    text-align: center;
+}
+.logo span {
+    font-family: "Indie Flower";
+}
+main h3 {
+    font-size: 2.9em;
+    margin: 0px 0px;
+    padding-top: 90px;
+    color: rgb(109, 121, 207);
+    text-align: center;
+}
+main ol{
+    color: rgb(109, 121, 207);
+    font-size: 2em;
+}
+main a {
+    color: rgb(109, 121, 207);
+}
+main li {
+    color: whitesmoke;
+    margin-top: 25px;
+}
+/*About and contacts page
+==================================*/
+.aboutContainer {
+    margin-top: 70px;
+    position: relative;
+    width: 80%;
+    min-height: 1000px;
+    padding: 0px 100px;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+.aboutContainer h1 {
+    padding-top: 90px;
+    color: black;
+    letter-spacing: 2px;
+}
+.aboutContainer p {
+    margin: 10px auto;
+    font-size: 1.45em;
+    letter-spacing: 2px;
+    line-height: 40px;
+}
+#googleMaps {
+    background-color: white;
+    margin: 70px auto;
+    align-items: center;
+    height: 600px;
+    width: 1300px;
+    border: 1px solid blue;
+}
+.servicesList li{
+    color: black;
+    font-size: 1.5em;
+    margin: 40px 0px 40px 0px;
+}
+.feedBackForm form {
+    margin: 50px 0px;
+    padding: 40px 40px;
+    border: 3px solid rgba(47, 109, 180, 0.5);
+    border-radius: 3px;
+}
+.feedBackForm form .fieldLabel {
+    float: left;
+    color: black;
+    width: 590px;
+    padding-top: 30px;
+}  
+.feedBackForm form label {
+    color: black;
+    padding-top: 30px;
+}  
+.feedBackForm form .feedbackField {
+    width: 700px;
+    margin: 30px 10px;
+}
+.feedBackForm form .radioButtons {
+    margin: 30px 10px;
+}
+.feedBackForm textarea {
+    margin: 50px 10px;
+    font-size: 1.4em;
+}
+/*Cart page
+==================================*/
+.cartContainer {
+    margin-top: 70px;
+    position: relative;
+    width: 90%;
+    min-height: 900px;
+    /* border: 3px solid rgba(47, 109, 180, 0.5);;
+    border-radius: 9px; */
+    background-color: rgba(255, 255, 255, 0.95)
+}
+.cartContainer h1 {
+    text-align: center;
+    padding-top: 50px;
+    font-size: 2.3em;
+    color: black;
+}
+div.emptyCart  {
+    margin: 10px 80px;
+    padding: 10px 20px;
+    width: 70%;
+    background-color: rgb(173, 173, 173);
+}
+.emptyCart h5 {
+    font-size: 1.25em;
+}
+.emptyCart p {
+    font-size: 1.3em;
+}
+.cartItems {
+    margin: 50px 80px;
+    text-align: center;
+}
+.cartItems {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.productTotal {
+      text-align: right;
+      font-size: 1.45em;
+      font-weight: bold;
+      letter-spacing: 3px;
+      margin: 40px 0px 40px 440px;
+}
+.itemsQuantity {
+    width: 40px;
+    margin-right: 15px;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.tableHead {
+    border-top: 2px solid black;
+}
+td {
+    text-align: center;
+    padding: 0px 40px 30px 40px;
+    font-size: 1.2em;
+    width: 250px;
+}
+th{
+    padding: 0px 40px 30px 40px;
+    font-size: 1.45em;
+    width: 250px;
+}
+/*Products page
+==================================*/
+.productsContainer {
+    margin-top: 70px;
+    position: relative;
+    width: 90%;
+    min-height: 900px;
+    border: 3px solid rgba(47, 109, 180, 0.5);
+    border-radius: 9px;
+    background-color: rgba(255, 255, 255, 0.95)
+}
+.productsContainer h5 {
+    font-size: 1.3em;
+}
+.customizeComponents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.customizeComponents  h4 {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.8em;
+}
+.productsContainer h4 {
+    text-align: center;
+    margin: 100px auto;
+    font-size: 1.7em;
+}
+.customizeComponents select {
+    width: 300px;
+    height: 35px;
+    font-size: 1em;
+    /* letter-spacing: 1.1px; */
+}
+
+.productsContainer h1 {
+    text-align: center;
+    padding-top: 70px;
+    font-size: 2.3em;
+    color: black;
+}
+.productsContainer p {
+    text-align: center;
+    padding: 0px 40px;
+    margin: 10px auto;
+    font-size: 1.45em;
+    letter-spacing: 2px;
+    line-height: 40px;
+}
+.productsContainer table {
+    margin: 30px 40px 100px 40px;
+}
+.productsContainer td {
+    text-align: center;
+    padding: 10px 40px 10px 40px;
+    font-size: 1.2em;
+    width: 350px;
+    height: 270px;
+    border-bottom: 1px solid rgb(54, 51, 51);
+    border-top: 1px solid rgb(54, 51, 51);
+    font-weight: bold;
+}
+.productsContainer th{
+    padding: 0px 40px 30px 40px;
+    font-size: 1.45em;
+    width: 250px;
+}
+
+.itemContainer {
+    margin: 20px 40px;
+    padding: 50px 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 3px;
+    border: 3px solid rgba(47, 109, 180, 0.5);
+    background-color: rgba(255, 255, 255, 0.95)
+}
+.price {
+    font-weight: bold;
+}
+.itemDescription {
+    font-weight: normal;
+    margin: 0px 0px;
+    padding: 0px 0px;
+    font-size: 1.05em;
+    letter-spacing: 2px;
+    line-height: 40px;
+}
+.alignLeft {
+/*    padding: 40px 0px;*/
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+}
+/*Register page
+==================================*/
+.registerContainer {
+    margin: 100px auto;
+    width: 1100px;
+    max-height: 3400px;
+    border: 3px solid rgba(47, 109, 180, 0.5);;
+    border-radius: 9px;
+    background-color: rgba(95, 85, 85, 0.6);
+}
+label {
+    /* margin-top: 37px;
+    padding-left: 50px; */
+    margin-top: 10px;
+    float: right;
+    width: 250px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: whitesmoke;
+}
+.formFields{
+    font-size: 1.1em;
+    margin-top: 10px;
+    width: 380px;
+    -webkit-box-sizing: border-box;
+}
+.buttonsContainer {
+    text-align: center;
+}
+.alignCenter {
+    display: flex;
+    justify-content: center;
+}
+.formButton {
+    font-size: 1.35em;
+    width: 183px;
+    height: 52px;
+    margin: 20px 20px;
+    border-radius: 5px;
+    background-color: rgba(47, 109, 180, 0.7);
+    border: 2px solid rgba(47, 109, 180, 0.7);
+    color: whitesmoke;
+    font-weight: bold;
+}
+.formButton:hover {
+    background-color: rgba(47, 109, 180, 0.9);
+    border: 2px solid rgba(47, 109, 180, 0.9);
+    border-radius: 5px;
+    color: whitesmoke;
+}
+/*Login page
+==================================*/
+.loginContainer {
+    width: 1100px;
+    height: 560px;
+    border: 3px solid rgba(47, 109, 180, 0.5);
+    border-radius: 9px;
+    background-color: rgba(95, 85, 85, 0.6);
+}
+
+.loginForm > label, .registerForm > label {
+    margin-top: 30px;
+    padding-left: 80px;
+
+}
+.addButton, .removeButton {
+    margin-left: 30px;
+    height: 35px;
+}
+.error {
+
+    font-family: Roboto;
+    font-size: 1em;
+    color: red;
+    font-weight: bold;
+}
+/*Footer
+==================================================*/
+footer {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10%;
+    background-color: black;
+    color: white;
+    font-size: 2.1em;
+    border-top: 4px groove white;
+}
+
+/*Style used by all pages and components
+==================================================*/
+span {
+    font-weight: bold;
+}
+.background {
+    background-image: url("../pictures/brand-business-cellphone-204611.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/*Adjust style to screen size
+==================================================*/
+@media screen and (max-width: 1120px) {
+    nav {
+        height: 110px;
+    }
+    .imageContainer img {
+        width: 800px;
+    }
+    section > p {
+        margin: 10px 20px 0px 40px;
+        font-size: 1.3em;
+        line-height: 35px;
+    }
+    section > ul {
+        margin: 10px 20px 0px 40px;
+        font-size: 1.3em;
+        line-height: 35px; 
+    }
+    section > ul > li {
+        margin: 5px 5px;
+    }
+    .example {
+        font-size: 1.3em;
+        margin: 10px 20px 0px 40px;
+        padding: 10px 10px;
+        border-radius: 4px;
+        border: 2px solid rgb(33, 172, 40);
+    }
+}
+
+@media screen and (max-width: 950px) {
+    h2  {
+        font-size: 1.1em;
+    }
+    nav {
+        width: 100%;
+        height: 212px;
+        position: relative;
+        border-bottom: none;
+        text-align: center;
+
+    }
+    nav li {
+        width: 100%;
+    }
+    nav li > a {     
+ 
+        height: 12px; 
+        font-weight: bold;
+        font-size: 0.7em;        
+    }
+    nav ul li ul {
+        width: 100%;
+        margin-top: 40px;      
+        display: none;
+        color: whitesmoke;        
+    }
+    
+    .dropDownMenu a {
+        height: 10px; 
+        width: 50px;
+    }
+
+    .imageContainer img {
+        width: 400px;
+    }
+    section > p {
+        margin: 10px 20px 0px 40px;
+        font-size: 1.1em;
+        line-height: 35px;
+    }
+    section > ul {
+        margin: 10px 20px 0px 40px;
+        font-size: 1.1em;
+        line-height: 35px; 
+    }
+    section > ul > li {
+        margin: 5px 5px;
+        width: 100%;
+    }
+    .example {
+        font-size: 1.1em;
+        margin: 10px 20px 0px 40px;
+        padding: 10px 10px;
+        border-radius: 4px;
+        border: 2px solid rgb(33, 172, 40);
+    }
+    .source {
+        font-size: 1.1em;
+    }    
+    .description, .banner, .content, .quizMain {
+        height: 350px;
+    }
+    .description p, .banner h2, .content h2, .quizMain h2 {
+        margin: 0 50px;
+        letter-spacing: 2px;
+        font-size: 1.8em;
+    }
+    /*Style for quizzes
+    ===========================*/
+    #quiz {
+        margin: 10px 30px;
+    }
+    .quizContainer h3 {
+        font-weight: bold;
+        font-size: 1.3em;         
+    }
+    .quizQuestion {
+
+        font-weight: bold;
+        font-size: 1.2em; 
+        margin: 0px 0px;
+    }
+    .optionsContainer {
+        display: block;
+        text-align: left;
+        width: 100%;
+        
+    }
+    .optionsContainer > p {
+        padding: 0px 0px;
+
+        font-size: 1.1em;
+    }
+}
+
+/*To fix problem with dropdown menu in Chrome
+===========================*/
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
+    nav ul li ul {
+        margin-left: -20px;   
+    }
+}
+
+@-moz-document url-prefix() {
+    nav ul li ul {
+        margin-right: 22px;        
+    }
+}

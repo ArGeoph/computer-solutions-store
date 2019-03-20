@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Computer solutions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" media="screen" href="resources/css/main.css" />
+</h:head>
+<h:body>
+        <nav>
+                <p class="logo"><a href="index.xhtml">Computer Solutions  <i class="fas fa-desktop"></i></a></p>
+                <ul class="navMenu">
+                    <li><a><i class="fas fa-laptop">  Products</i></a>
+                        <ul class="dropDownMenu">
+                                <li><a href="computers.xhtml"><i class="fas fa-desktop">  Computers</i></a></li>
+                                <li><a><i class="fas fa-hdd">  Components</i></a>
+                                    <ul class="dropDownMenu">
+                                            <li><a href="cpu.xhtml">CPU</a></li>
+                                            <li><a href="ram.xhtml">RAM</a></li>
+                                            <li><a href="hdd.xhtml">Hard drives and SSDs</a></li>
+                                            <li><a href="videocards.xhtml">Video Cards</a></li>
+                                            <li><a href="audiocards.xhtml">Audio Cards</a></li>
+                                            <li><a href="displays.xhtml">Displays</a></li>
+                                            <li><a href="os.xhtml">OS</a></li>
+                                    </ul></li>
+                            </ul>
+                    </li>
+                    <li><a href="services.xhtml"><i class="fas fa-concierge-bell">  Services</i></a></li>
+                    <li><a href="contacts.xhtml"><i class="fas fa-address-book">  Contacts</i></a></li>
+                    <li><a href="about.xhtml"><i class="fas fa-question">  About</i></a></li>
+                    <li><a href="feedback.xhtml"><i class="fas fa-comment-alt">  Leave feedback</i></a></li>
+                    <li><a href="cart.xhtml">
+                            <h:outputText id="numberOfItemsInCart" escape="false" value="#{onlineStoreBehaviourController.numberOfItemsInCart}"/>
+                            <i class="fas fa-shopping-cart">  Your cart</i></a>
+                    </li>            
+
+                    
+                    <li>
+                        <c:if test="#{authenticateUser.isUserAuthenticated}">
+                            <a><i class="fas fa-user-alt">Welcome #{authenticateUser.userInfo.getString("firstName")}</i></a>
+                            <ul class="dropDownMenu">                               
+                                <li><a href="account.xhtml"><i class="fas fa-sign-in-alt">  Your account</i></a></li>
+                                <li><a href="orders.xhtml"><i class="fas fa-registered">  Your orders</i></a></li>
+                                 <li><a href="logout.xhtml"><i class="fas fa-registered">  Logout</i></a></li>
+                            </ul>
+                        </c:if>
+                        
+                        <c:if test="#{!authenticateUser.isUserAuthenticated}">
+                            <a><i class="fas fa-user-alt">  Account</i></a>
+                            <ul class="dropDownMenu">
+                                    <li><a href="login.xhtml"><i class="fas fa-sign-in-alt">  Login</i></a></li>
+                                    <li><a href="register.xhtml"><i class="fas fa-registered">  Register</i></a></li>
+                                </ul>
+                        </c:if>                   
+
+                    </li>
+                </ul>
+            </nav>
+    
+    <main class="background">
+        <div class="aboutContainer"> 
+            <h1>Feedback</h1>  
+            <div class="feedBackForm">
+                <p>Please leave your feedback, so we can improve our services and add new products. After 
+                    submitting your feedback please send us email at <a href="mailto:promo@computersolutions.ca">promo@computersolutions.ca</a>
+                    to get a 50$ discount towards future purchases at our store. </p>
+                    <h:form>
+                        <label class="fieldLabel" for="firstName">Enter your name </label><input required="true" class="feedbackField" type="text" id="firstName"/><br />
+                        <label class="fieldLabel" for="firstName">Enter your email </label><input required="true" class="feedbackField" type="email" id="email"/><br />
+                        <label class="fieldLabel">Would you recommend us to you friends? </label>
+                        <label for="yes">Yes<input type="radio" class="radioButtons" value="Yes" name="radioButtonRecommend" id="yes" required="true"/></label>
+                        <label for="no">No<input type="radio" class="radioButtons" value="No" name="radioButtonRecommend" id="no" required="true"/></label><br />
+                        <label class="fieldLabel">Leave your comments</label>
+                        <textarea required="true" rows="8" cols="70" placeholder="Please leave your recommendations and comments for our management"></textarea><br />
+                        <div class="buttonsContainer">
+                            <h:commandButton action="#{onlineStoreBehaviourController.addFeedback()}" type="submit" styleClass="formButton" value="Submit" /> 
+                            <input type="reset" class="formButton"  value="Clear fields" />
+                        </div>
+                    </h:form>
+
+
+            </div>            
+        </div>
+    </main>
+
+    <footer>
+        &copy; Kirill Golubev 2018 
+    </footer>
+</h:body>
+    <script src="resources/javascript/main.js"></script>
+</html>

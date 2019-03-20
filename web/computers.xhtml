@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+     <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Computer solutions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" media="screen" href="resources/css/main.css" />
+</h:head>
+<h:body>
+        <nav>
+                <p class="logo"><a href="index.xhtml">Computer Solutions  <i class="fas fa-desktop"></i></a></p>
+                <ul class="navMenu">
+                    <li><a><i class="fas fa-laptop">  Products</i></a>
+                        <ul class="dropDownMenu">
+                                <li><a href="computers.xhtml"><i class="fas fa-desktop">  Computers</i></a></li>
+                                <li><a><i class="fas fa-hdd">  Components</i></a>
+                                    <ul class="dropDownMenu">
+                                            <li><a href="cpu.xhtml">CPU</a></li>
+                                            <li><a href="ram.xhtml">RAM</a></li>
+                                            <li><a href="hdd.xhtml">Hard drives and SSDs</a></li>
+                                            <li><a href="videocards.xhtml">Video Cards</a></li>
+                                            <li><a href="audiocards.xhtml">Audio Cards</a></li>
+                                            <li><a href="displays.xhtml">Displays</a></li>
+                                            <li><a href="os.xhtml">OS</a></li>
+                                    </ul></li>
+                            </ul>
+                    </li>
+                    <li><a href="services.xhtml"><i class="fas fa-concierge-bell">  Services</i></a></li>
+                    <li><a href="contacts.xhtml"><i class="fas fa-address-book">  Contacts</i></a></li>
+                    <li><a href="about.xhtml"><i class="fas fa-question">  About</i></a></li>
+                    <li><a href="feedback.xhtml"><i class="fas fa-comment-alt">  Leave feedback</i></a></li>
+                    <li><a href="cart.xhtml">
+                            <h:outputText id="numberOfItemsInCart" escape="false" value="#{onlineStoreBehaviourController.numberOfItemsInCart}"/>
+                            <i class="fas fa-shopping-cart">  Your cart</i></a>
+                    </li>            
+
+                    
+                    <li>
+                        <c:if test="#{authenticateUser.isUserAuthenticated}">
+                            <a><i class="fas fa-user-alt">Welcome #{authenticateUser.userInfo.getString("firstName")}</i></a>
+                            <ul class="dropDownMenu">                               
+                                <li><a href="account.xhtml"><i class="fas fa-sign-in-alt">  Your account</i></a></li>
+                                <li><a href="orders.xhtml"><i class="fas fa-registered">  Your orders</i></a></li>
+                                 <li><a href="logout.xhtml"><i class="fas fa-registered">  Logout</i></a></li>
+                            </ul>
+                        </c:if>
+                        
+                        <c:if test="#{!authenticateUser.isUserAuthenticated}">
+                            <a><i class="fas fa-user-alt">  Account</i></a>
+                            <ul class="dropDownMenu">
+                                    <li><a href="login.xhtml"><i class="fas fa-sign-in-alt">  Login</i></a></li>
+                                    <li><a href="register.xhtml"><i class="fas fa-registered">  Register</i></a></li>
+                                </ul>
+                        </c:if>                   
+
+                    </li>
+                </ul>
+            </nav>
+
+    <main class="background">
+        <div class="productsContainer"> 
+            <h1>Computers</h1>   
+
+            <p>Select one of the ready configurations we have. Note that you can 
+                customize most of them by going to the computer page and replacing 
+                some of the components. <br /><b>The customization feature is currently in the 
+                testing mode, so it can be unavailable. Sorry for the inconvenience</b>
+            </p>           
+            #{onlineStoreBehaviourController.loadComputersContent()}
+            
+            <h:form>
+                <table>
+                    <tbody>                                                                    
+                        <h:dataTable value="#{renderContent.listOfAvailableComputers}" var="computer">
+                            
+                            <h:column>
+                                <img src="#{computer.pictureUrl}" alt="Computer picture" width="160px" height="131px" />                                
+                            </h:column>
+                            <h:column>
+                                      <f:facet name="header">Item</f:facet>
+                                    #{computer.name}<br />#{computer.description}<br />
+                                    <a href="#{computer.computerUrl}">More details</a>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Select quantity</f:facet>
+                                
+                                <h:inputText styleClass="itemsQuantity" id="quantitySelected" 
+                                             requiredMessage="Please enter your last name"
+                                    value="#{computer.quantitySelected}"
+                                    validatorMessage="Name must be fewer than 30 characters">
+                                </h:inputText>
+                            </h:column>
+                            
+                            <h:column>
+                                <f:facet name="header">Quantity available</f:facet>
+                                
+                                <h:inputText disabled="true" styleClass="itemsQuantity" id="quantityAvailable" 
+                                             requiredMessage="Please enter your last name"
+                                    value="#{computer.quantityAvailable}"
+                                    validatorMessage="Name must be fewer than 30 characters">
+                                </h:inputText>
+                                <h:message id="lastNameMessage" for="lastNameInputText" styleClass="error"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Price per unit</f:facet>
+                                    #{computer.price}$
+                            </h:column>
+
+                            <h:column>
+                                    <div class="buttonsContainer">                                    
+                                        <h:commandButton id="addToCart" 
+                                                        action="#{onlineStoreBehaviourController.addToCart(computer, computer.getQuantitySelected())}"
+                                                        styleClass="mainPageButton" value="Add to cart" disabled="#{computer.quantityAvailable == 0}">
+                                            <f:ajax  execute="quantitySelected" render="quantityAvailable quantitySelected numberOfItemsInCart addToCart " />                                        
+                                        </h:commandButton>
+                                        
+                                        <h:link rendered="#{computer.isCustomizable}" styleClass="mainPageButton" 
+                                                outcome="#{computer.computerUrl}" value="Customize" />
+                                    </div>
+                            </h:column>
+ 
+                        </h:dataTable>
+                    </tbody>
+                </table>
+            </h:form>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Kirill Golubev 2018 
+    </footer>
+</h:body>
+</html>

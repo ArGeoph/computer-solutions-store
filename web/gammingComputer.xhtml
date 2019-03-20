@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Computer solutions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" media="screen" href="resources/css/main.css" />
+</h:head>
+<h:body>
+        <nav>
+                <p class="logo"><a href="index.xhtml">Computer Solutions  <i class="fas fa-desktop"></i></a></p>
+                <ul class="navMenu">
+                    <li><a><i class="fas fa-laptop">  Products</i></a>
+                        <ul class="dropDownMenu">
+                                <li><a href="computers.xhtml"><i class="fas fa-desktop">  Computers</i></a></li>
+                                <li><a><i class="fas fa-hdd">  Components</i></a>
+                                    <ul class="dropDownMenu">
+                                            <li><a href="cpu.xhtml">CPU</a></li>
+                                            <li><a href="ram.xhtml">RAM</a></li>
+                                            <li><a href="hdd.xhtml">Hard drives and SSDs</a></li>
+                                            <li><a href="videocards.xhtml">Video Cards</a></li>
+                                            <li><a href="audiocards.xhtml">Audio Cards</a></li>
+                                            <li><a href="displays.xhtml">Displays</a></li>
+                                            <li><a href="os.xhtml">OS</a></li>
+                                    </ul></li>
+                            </ul>
+                    </li>
+                    <li><a href="services.xhtml"><i class="fas fa-concierge-bell">  Services</i></a></li>
+                    <li><a href="contacts.xhtml"><i class="fas fa-address-book">  Contacts</i></a></li>
+                    <li><a href="about.xhtml"><i class="fas fa-question">  About</i></a></li>
+                    <li><a href="feedback.xhtml"><i class="fas fa-comment-alt">  Leave feedback</i></a></li>
+                    <li><a href="cart.xhtml">
+                             <h:outputText id="numberOfItemsInCart" escape="false" value="#{onlineStoreBehaviourController.numberOfItemsInCart}"/>
+                            <i class="fas fa-shopping-cart">  Your cart</i></a>
+                    </li>            
+
+                    
+                    <li>
+                        <c:if test="#{authenticateUser.isUserAuthenticated}">
+                            <a><i class="fas fa-user-alt">Welcome #{authenticateUser.userInfo.getString("firstName")}</i></a>
+                            <ul class="dropDownMenu">                               
+                                <li><a href="account.xhtml"><i class="fas fa-sign-in-alt">  Your account</i></a></li>
+                                <li><a href="orders.xhtml"><i class="fas fa-registered">  Your orders</i></a></li>
+                                 <li><a href="logout.xhtml"><i class="fas fa-registered">  Logout</i></a></li>
+                            </ul>
+                        </c:if>
+                        
+                        <c:if test="#{!authenticateUser.isUserAuthenticated}">
+                            <a><i class="fas fa-user-alt">  Account</i></a>
+                            <ul class="dropDownMenu">
+                                    <li><a href="login.xhtml"><i class="fas fa-sign-in-alt">  Login</i></a></li>
+                                    <li><a href="register.xhtml"><i class="fas fa-registered">  Register</i></a></li>
+                                </ul>
+                        </c:if>                   
+
+                    </li>
+                </ul>
+            </nav>
+    
+    <main class="background">
+        <div class="productsContainer"> 
+      
+            <h1>#{renderContent.listOfAvailableComputers.get(1).getName()}</h1>   
+            
+            <div class="itemContainer">
+                <h:form>
+
+                <h:panelGrid columns="6">
+                    
+                <h:column>
+                    <img src="#{renderContent.listOfAvailableComputers.get(1).pictureUrl}" alt="Computer picture" width="160px" height="131px" />
+                </h:column>
+                    
+                <h:column>
+                    <div class="itemDescription">#{renderContent.listOfAvailableComputers.get(1).getDescription()}</div>
+                </h:column>
+                    
+                <h:column>  
+                    <p class="price">#{renderContent.listOfAvailableComputers.get(1).getPrice()}$</p>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Quantity available</f:facet>
+
+                    <h:inputText styleClass="itemsQuantity" id="quantitySelected" 
+                                 requiredMessage="Please enter your last name"
+                        value="#{renderContent.listOfAvailableComputers.get(1).quantitySelected}"
+                        validatorMessage="Name must be fewer than 30 characters">
+                    </h:inputText>
+                    <h:message id="lastNameMessage" for="lastNameInputText" styleClass="error"/>
+                </h:column>
+                
+                <h:column>
+                    <div class="buttonsContainer">                                    
+                        <h:commandButton id="addToCart" 
+                                        action="#{onlineStoreBehaviourController.addToCart(renderContent.listOfAvailableComputers.get(1), 
+                                                  renderContent.listOfAvailableComputers.get(1).getQuantitySelected())}"
+                                        styleClass="mainPageButton" value="Add to cart" disabled="#{computer.quantityAvailable == 0}">
+                            <f:ajax  execute="quantitySelected" render="quantityAvailable quantitySelected numberOfItemsInCart addToCart " />                                        
+                        </h:commandButton>
+
+                    </div>
+                </h:column>
+                </h:panelGrid>
+                </h:form>
+           
+            </div>
+            
+                      <h:panelGroup rendered="#{renderContent.listOfAvailableComputers.get(1).isCustomizable}">
+                <div class="customizeComponents">
+                    <h4>Customize your computer to tailor it to your needs<br/>
+                        <b>The customization feature is currently in the 
+                    testing mode, so it can be unavailable. Sorry for the inconvenience</b>
+                    </h4>  
+                    <form>
+                    <table>                        
+                        <tbody>                    
+                            
+                             <tr>
+                            <td>RAM</td>
+                            <td><select>
+                                    <option value="ram4gb">DDR3 1600MHz 4GB</option>
+                                    <option value="ram8gb">DDR3 1600MHz 8GB +70$</option>
+                                    <option value="ram16gb">DDR3 1600MHz 16GB +150$</option>
+                                    <option value="ram32gb">DDR3 1600MHz 32GB +350$</option>
+                                    </select></td>
+                            <td>118 $</td>
+                        </tr>
+
+                        <tr>
+                            <td>Hard Drive</td>
+                            <td><select>
+                                    <option value="hdd500gb">HDD 500GB -35$</option>
+                                    <option value="hdd1tb" selected="selected">HDD 1TB </option>
+                                    <option value="hdd2tb">HDD 2TB +120$</option>
+                                    <option value="sdd256gb">SDD 256GB +150$</option>
+                                    <option value="sdd512gb">SDD 256GB +280$</option>
+                                    <option value="sdd1tb">SDD 256GB +500$</option>
+                                    </select></td>
+                            <td>118 $</td>
+                        </tr>
+
+                        <tr>
+                            <td>Video Card</td>
+                            <td><select>
+                                    <option value="noVideoCard">No video card</option>
+                                    <option value="nvidia210">NVIDIA 210 1GB + 60$</option>
+                                    <option value="nvidia1050">GeForce GTX 1050 Ti, 4GB GDDR5, + 210$</option>
+                                    <option value="nvidia1060">GeForce GTX 1060 Ti, 6GB GDDR5, + 320$</option>
+                                    </select></td>
+                            <td>118 $</td>
+                        </tr>
+
+                        <tr>
+                            <td>Audio Card</td>
+                            <td><select>
+                                    <option value="noAudioCard">No audio card</option>
+                                    <option value="creativeFX">Creative Sound Blaster Audigy FX PCIe 5.1 + 50$</option>
+                                    <option value="creativeBlaster">Creative Sound Blaster Zx PCIe Gaming Sound Card  + 90$</option>
+                                    </select></td>
+                            <td>118 $</td>
+                        </tr>
+
+                        <tr>
+                            <td>Operating System</td>
+                            <td><select>
+                                    <option value="windows8">Windows 8</option>
+                                    <option value="windows10Home">Windows 10 Home +40$</option>
+                                    <option value="windows10Pro">Windows 10 Pro +90$</option>
+                                    <option value="ubuntu">Ubuntu 18.04 LTS -60$</option>
+                                    </select></td>
+                            <td>118 $</td>
+                        </tr>
+
+                        <tr>
+                            <td>displays</td>
+                            <td><select>
+                                    <option value="display24"> 24-Inch Curved Gaming display (Super Slim) ($160)</option>
+                                    <option value="display27"> 27-Inch display (Super Slim) +60$</option>
+                                    <option value="display24"> 32-Inch 4K UHD display +250$</option>
+                                    <option value="display34"> 34-inch QHD Ultrawide Curved display with Thunderbolt +650$</option>
+                                </select></td>
+                            <td>118 $</td>
+                        </tr>
+                      
+                    </tbody>
+
+                </table>
+                </form>
+                </div>
+            </h:panelGroup>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Kirill Golubev 2018 
+    </footer>
+</h:body>
+</html>

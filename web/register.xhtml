@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+     <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Computer solutions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" media="screen" href="resources/css/main.css" />
+</h:head>
+<h:body>
+        <nav>
+                <p class="logo"><a href="index.xhtml">Computer Solutions  <i class="fas fa-desktop"></i></a></p>
+                <ul class="navMenu">
+                    <li><a><i class="fas fa-laptop">  Products</i></a>
+                        <ul class="dropDownMenu">
+                                <li><a href="computers.xhtml"><i class="fas fa-desktop">  Computers</i></a></li>
+                                <li><a><i class="fas fa-hdd">  Components</i></a>
+                                    <ul class="dropDownMenu">
+                                            <li><a href="cpu.xhtml">CPU</a></li>
+                                            <li><a href="ram.xhtml">RAM</a></li>
+                                            <li><a href="hdd.xhtml">Hard drives and SSDs</a></li>
+                                            <li><a href="videocards.xhtml">Video Cards</a></li>
+                                            <li><a href="audiocards.xhtml">Audio Cards</a></li>
+                                            <li><a href="displays.xhtml">Displays</a></li>
+                                            <li><a href="os.xhtml">OS</a></li>
+                                    </ul></li>
+                            </ul>
+                    </li>
+                    <li><a href="services.xhtml"><i class="fas fa-concierge-bell">  Services</i></a></li>
+                    <li><a href="contacts.xhtml"><i class="fas fa-address-book">  Contacts</i></a></li>
+                    <li><a href="about.xhtml"><i class="fas fa-question">  About</i></a></li>
+                    <li><a href="feedback.xhtml"><i class="fas fa-comment-alt">  Leave feedback</i></a></li>
+                    <li><a href="cart.xhtml">
+                            <h:outputText id="numberOfItemsInCart" escape="false" value="#{onlineStoreBehaviourController.numberOfItemsInCart}"/>
+                            <i class="fas fa-shopping-cart">  Your cart</i></a>
+                    </li>            
+
+                    
+                    <li>
+                        <c:if test="#{authenticateUser.isUserAuthenticated}">
+                            <a><i class="fas fa-user-alt">Welcome #{authenticateUser.userInfo.getString("firstName")}</i></a>
+                            <ul class="dropDownMenu">                               
+                                <li><a href="account.xhtml"><i class="fas fa-sign-in-alt">  Your account</i></a></li>
+                                <li><a href="orders.xhtml"><i class="fas fa-registered">  Your orders</i></a></li>
+                            </ul>
+                        </c:if>
+                        
+                        <c:if test="#{!authenticateUser.isUserAuthenticated}">
+                            <a><i class="fas fa-user-alt">  Account</i></a>
+                            <ul class="dropDownMenu">
+                                    <li><a href="login.xhtml"><i class="fas fa-sign-in-alt">  Login</i></a></li>
+                                    <li><a href="register.xhtml"><i class="fas fa-registered">  Register</i></a></li>
+                                </ul>
+                        </c:if>                   
+
+                    </li>
+                </ul>
+            </nav>
+
+    <main class="background">
+        <div class="registerContainer"> 
+            <h1>Register</h1>   
+            
+            <h:form>                
+                <h:panelGrid columns="3">                    
+                    <label>First name</label>
+                    <h:inputText styleClass="formFields" id="firstNameInputText" required="true"
+                        requiredMessage="Please enter your first name"
+                        value="#{createUser.firstName}"
+                        validatorMessage="Name must be fewer than 30 characters"
+                        pt:placeholder="John">
+                    <f:validateLength maximum="30" />
+                    </h:inputText>
+                    <h:message id="firstNameMessage" for="firstNameInputText" styleClass="error"/>
+                    
+                    <label>Last name</label>
+                    <h:inputText styleClass="formFields" id="lastNameInputText" required="true"
+                        requiredMessage="Please enter your last name"
+                        value="#{createUser.lastName}"
+                        validatorMessage="Name must be fewer than 30 characters"
+                        pt:placeholder="Doe">
+                    <f:validateLength maximum="30" />
+                    </h:inputText>
+                    <h:message id="lastNameMessage" for="lastNameInputText" styleClass="error"/>
+                    
+                    <label>E-mail</label>
+                    <h:inputText styleClass="formFields" id="emailInputText" required="true"
+                        requiredMessage="Please enter a valid e-mail address"
+                        value="#{createUser.email}"
+                        validatorMessage="Invalid e-mail address format"
+                        pt:placeholder="example@example.com">
+                        <f:validateRegex pattern=
+                        "\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
+                    </h:inputText>
+                    <h:message id="emailMessage" for="emailInputText" styleClass="error"/>
+                    
+                    <label>Login</label>
+                    <h:inputText styleClass="formFields" id="loginInputText" required="true"
+                        requiredMessage="Please enter a valid login"
+                        value="#{createUser.login}"
+                        validatorMessage="Login should be more than 6 but less than 12 characters">
+                        <f:validateLength minimum="6" maximum="12" />
+                    </h:inputText>
+                    <h:message id="loginMessage" for="loginInputText" 
+                        styleClass="error"/>
+                    
+                    <label>Password</label>
+                    <h:inputSecret styleClass="formFields" id="password1InputText" required="true"
+                        requiredMessage="Please enter a valid password"
+                        value="#{createUser.password1}"
+                        validatorMessage="Password should have at least 7 characters">                        
+                        <f:validateLength minimum="7" />
+                    </h:inputSecret>
+                    <h:message id="password1Message" for="password1InputText" 
+                        styleClass="error"/>
+                    <span id="password1MessageNoMatch" class="error">#{createUser.passwordErrorMessage}</span>
+                    
+                    <label>Repeat password</label>
+                    <h:inputSecret styleClass="formFields" id="password2InputText" required="true"                        
+                        requiredMessage="Please re-enter your password"
+                        value="#{createUser.password2}"
+                        validatorMessage="Your passwords do not match!">   
+                        <f:validator validatorId="PasswordsValidator" />
+                    </h:inputSecret>
+                    <h:message id="password2Message" for="password2InputText" styleClass="error"/>
+                    <span id="password2MessageNoMatch" class="error">#{createUser.passwordErrorMessage}</span>
+                    
+                    <label>Address line 1</label>
+                    <h:inputText styleClass="formFields" id="addressLine1InputText" required="true"
+                        requiredMessage="Please enter your address"
+                        value="#{createUser.address1}">
+                    </h:inputText>
+                    <h:message id="addressLine1Message" for="addressLine1InputText" 
+                        styleClass="error"/>
+                                        
+                    <label>Address line 2</label>
+                    <h:inputText styleClass="formFields" id="addressLine2InputText" required="false"
+                        value="#{createUser.address2}"
+                        pt:placeholder="Apt#, Suite, Floor (optional)">
+                    </h:inputText>
+                    <h:message id="addressLine2Message" for="addressLine2InputText" 
+                        styleClass="error"/>
+                    
+                    <label>City</label>
+                    <h:inputText styleClass="formFields" id="cityInputText" required="true"
+                        requiredMessage="Please enter your city"
+                        value="#{createUser.city}">
+                    </h:inputText>
+                    <h:message id="cityMessage" for="cityInputText" styleClass="error"/>
+                    
+                    <label>Province</label>
+                    <h:selectOneMenu id="provinceInput" styleClass="formFields" value = "#{createUser.province}"> 
+                        <f:selectItem itemValue = "AB" itemLabel = "AB" /> 
+                        <f:selectItem itemValue = "BC" itemLabel = "BC" /> 
+                        <f:selectItem itemValue = "MB" itemLabel = "MB" /> 
+                        <f:selectItem itemValue = "NB" itemLabel = "NB" /> 
+                        <f:selectItem itemValue = "NL" itemLabel = "NL" /> 
+                        <f:selectItem itemValue = "NS" itemLabel = "NS" />                         
+                        <f:selectItem itemValue = "NT" itemLabel = "NT" /> 
+                        <f:selectItem itemValue = "NU" itemLabel = "NU" /> 
+                        <f:selectItem itemValue = "ON" itemLabel = "ON" /> 
+                        <f:selectItem itemValue = "PE" itemLabel = "PE" /> 
+                        <f:selectItem itemValue = "SK" itemLabel = "SK" />  
+                        <f:selectItem itemValue = "QC" itemLabel = "QC" /> 
+                        <f:selectItem itemValue = "YT" itemLabel = "YT" />
+                    </h:selectOneMenu> 
+                    <h:message id="prvovinceMessage" for="provinceInput" styleClass="error"/>
+                    
+                    <label>Postal code</label>
+                    <h:inputText styleClass="formFields" id="postalCodeText" required="true"
+                        requiredMessage="Please enter a valid postal code"
+                        value="#{createUser.postalCode}"
+                        validatorMessage="Invalid postal code format"
+                        pt:placeholder="T5S 9S1">
+                    <f:validateRegex pattern=
+                    "^[ABCEGHJ-NPRSTVXY][0-9][ABCEGHJ-NPRSTV-Z] [0-9][ABCEGHJ-NPRSTV-Z][0-9]$" />
+                    </h:inputText>
+                    <h:message id="postalCodeMessage" for="postalCodeText" styleClass="error"/>
+                       
+                    <label>Phone</label>
+                    <h:inputText styleClass="formFields" id="phoneInputText" required="true"
+                        requiredMessage="Please enter a valid phone number"
+                        value="#{createUser.phone}"
+                        validatorMessage="Invalid phone number format"
+                        pt:placeholder="(555)555-5555">
+                    <f:validateRegex pattern=
+                    "((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}" />
+                    </h:inputText>
+                    <h:message id="phoneMessage" for="phoneInputText" styleClass="error"/>                    
+                </h:panelGrid> 
+                
+                <div class="buttonsContainer">
+                    <h:commandButton type="submit" action="#{createUser.createUser}" styleClass="formButton" value="Register">
+                            <f:ajax execute="firstNameInputText lastNameInputText emailInputText provinceInput loginInputText password1InputText 
+                                password2InputText addressLine1InputText addressLine2InputText cityInputText postalCodeText phoneInputText"
+                            render="firstNameMessage lastNameMessage emailMessage loginMessage password1Message 
+                            password2Message addressLine1Message addressLine2Message  cityMessage postalCodeMessage phoneMessage registrationForm" />
+                    </h:commandButton>
+                    <input type="reset" class="formButton"  value="Clear fields" />
+                </div>
+            </h:form>       
+        </div>
+    </main>
+    <footer>
+        &copy; Kirill Golubev 2018 
+    </footer>
+</h:body>
+</html>
